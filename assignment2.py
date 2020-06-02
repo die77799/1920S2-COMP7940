@@ -17,7 +17,13 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, ImageMessage, VideoMessage, FileMessage, StickerMessage, StickerSendMessage
 )
+
 from linebot.utils import PY3
+
+HOST = "redis-13426.c228.us-central1-1.gce.cloud.redislabs.com"
+PWD = "hqjhFKcfFKEf3NEGlBT6Lp7tDRVr4NZi"
+PORT = "13426"
+redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
 
 app = Flask(__name__)
 
@@ -78,7 +84,8 @@ def callback():
 # Handler function for Text Message
 def handle_TextMessage(event):
     print(event.message.text)
-    msg = 'You said: "' + event.message.text + '" '
+    redis1.incr(event.message.text)
+    msg = 'You said: "' + event.message.text + '" ' + " for " + redis1.get(event.message.text).decode('UTF-8') + " times"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
