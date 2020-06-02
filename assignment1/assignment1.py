@@ -16,11 +16,10 @@ while True:
         break
     if msg == '':
         continue
-    print("You have entered " + msg, end=' ') 
+    print("You have entered " + msg + " for", end=' ')
 
    
     # Add your code here
-
-
-
-    print('for X times')
+    redis1.incr(msg)
+    print(redis1.get(msg).decode('UTF-8'), end='')
+    print(' times')
