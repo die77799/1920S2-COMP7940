@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', '2df5a60ba48966daeec6abaa01807536')
-channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', 'GVfbBfVENU5xEZi0jka9SaK7cPf4CbhjhjqORhK6BrdyBJdr/xu0u8nfAj4n6WPP+bruLlLnxFEOLW30kXaeK1vIuP7yMMBIhA/cgod/ynaBltmSqv7jc0hNUMlpIjhDbzBjAGkLN3AQa2McMoJipAdB04t89/1O/w1cDnyilFU=')
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', 'hxLeJ4owu7BaBfzdezvMG/4Cldv5ZH8fOenTgU10p6bjpafzpjxfnmdD8gkK7SZC+bruLlLnxFEOLW30kXaeK1vIuP7yMMBIhA/cgod/ynYmdHRYezzZjCKfyHk22kzRVFaRpNygxF0yI3MFIZIw+wdB04t89/1O/w1cDnyilFU=')
 
 # obtain the port that heroku assigned to this app.
 heroku_port = os.getenv('PORT', None)
