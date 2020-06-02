@@ -15,7 +15,8 @@ from linebot.exceptions import (
 )
 
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageMessage, VideoMessage, FileMessage, StickerMessage, StickerSendMessage
+    MessageEvent, TextMessage, TextSendMessage, ImageMessage, VideoMessage, FileMessage, StickerMessage,
+    StickerSendMessage, LocationSendMessage, JoinEvent, LeaveEvent
 )
 
 from linebot.utils import PY3
@@ -73,6 +74,10 @@ def callback():
             handle_FileMessage(event)
         if isinstance(event.message, StickerMessage):
             handle_StickerMessage(event)
+        if isinstance(event.message, JoinEvent):
+            handle_JoinMessage(event)
+        if isinstance(event.message,LeaveEvent):
+            handle_LeaveMessage(event)
 
         if not isinstance(event, MessageEvent):
             continue
@@ -120,6 +125,19 @@ def handle_FileMessage(event):
 	event.reply_token,
 	TextSendMessage(text="Nice file!")
     )
+
+def handle_JoinMessage(event):
+    line_bot_api.reply_message(
+    event.reply_token,LocationSendMessage(title='my location', address='Hong Kong', latitude=22.302711,
+                                                   longitude=114.177216)
+    )
+
+def handle_LeaveMessage(event):
+    text = 'I am leaving~'
+    line_bot_api.reply_message(
+    event.reply_token,TextSendMessage(text)
+    )
+
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
