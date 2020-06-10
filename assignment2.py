@@ -126,6 +126,7 @@ def handle_FileMessage(event):
 	TextSendMessage(text="Nice file!")
     )
 
+# Handler function for Joining a group
 def handle_JoinMessage(event):
     line_bot_api.reply_message(
     event.reply_token,LocationSendMessage(title='my location', address='Hong Kong', latitude=22.302711,
